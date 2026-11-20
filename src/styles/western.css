@@ -1,0 +1,77 @@
+/* ===== Duelo del Oeste: escena pixel-art ===== */
+.western-stage { background: #1d1233; }
+.western-scene { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; image-rendering: pixelated; }
+.western-scene .sc-stars rect { animation: star-blink 1.4s steps(2, end) infinite; }
+.sc-sun { animation: sun-pulse 4s steps(4, end) infinite; transform-origin: 80px 44px; }
+.cloud { animation: cl-drift 26s linear infinite; } .c-b { animation-duration: 38s; animation-direction: reverse; }
+@keyframes cl-drift { from { translate: -26px 0; } to { translate: 30px 0; } }
+.vulture { animation: vult 14s linear infinite; } .v-b { animation-delay: -7s; animation-duration: 19s; }
+.vulture rect:nth-child(2) { animation: flap .5s steps(2, end) infinite; }
+@keyframes vult { from { translate: -10px 6px; } 50% { translate: 80px 0; } to { translate: 170px 8px; } }
+@keyframes flap { 50% { translate: 0 1.5px; } }
+.mesa-far { animation: mesa-pixel-a 18s steps(36, end) infinite alternate; } .mesa-near { animation: mesa-pixel-b 12s steps(24, end) infinite alternate; }
+.door { transform-box: fill-box; transform-origin: top center; } .sc-go .door, .sc-roundResult .door { animation: door-swing .5s steps(4, end) 2; }
+.door-l { animation: door-idle 3.2s steps(3, end) infinite; } .door-r { animation: door-idle 3.2s steps(3, end) 1.1s infinite; }
+@keyframes door-idle { 85% { skew: 0deg; } 92% { skew: 5deg; } } @keyframes door-swing { 50% { skew: -9deg; } }
+.win-glow { animation: win-flicker 2.4s steps(1, end) infinite; } .g2 { animation-delay: -1.1s; }
+@keyframes win-flicker { 0%, 100% { fill: #ffd27a; } 40% { fill: #ffb44a; } 55% { fill: #fff0b0; } 80% { fill: #f0a040; } }
+.tumble { animation: tumble-run 9s linear infinite; transform-box: fill-box; }
+@keyframes tumble-run { from { translate: -10px 88px; rotate: 0deg; } 50% { translate: 80px 86px; rotate: 360deg; } to { translate: 170px 88px; rotate: 720deg; } }
+/* Vaqueros */
+.cb { transform-box: view-box; } .cb-arm { transform-origin: 0 0; rotate: 82deg; } .cb-flash, .sweat { opacity: 0; }
+.cb-idle, .cb-ready { animation: cb-breathe 1s steps(2, end) infinite; } @keyframes cb-breathe { 50% { translate: 0 -.8px; } }
+.cb-ready .cb-arm { rotate: 70deg; animation: itchy .35s steps(2, end) infinite; } @keyframes itchy { 50% { rotate: 76deg; } }
+.cb-ready .sweat { opacity: 1; animation: sweat-drop 1s steps(4, end) infinite; } @keyframes sweat-drop { to { translate: 0 6px; opacity: 0; } }
+.cb-draw .cb-arm { animation: draw-up .12s steps(3, end) both; } @keyframes draw-up { from { rotate: 82deg; } to { rotate: 0deg; } }
+.cb-draw { animation: lunge .2s steps(3, end) both; } @keyframes lunge { to { translate: 1.5px 0; } }
+.cb-win .cb-arm { rotate: -6deg; } .cb-win .cb-flash { animation: muzzle .4s steps(4, end) both; }
+@keyframes muzzle { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+.cb-win .cb-hat { animation: hat-hop 1s steps(5, end) .5s infinite; } @keyframes hat-hop { 40% { translate: 0 -2px; } }
+.cb-win { animation: cb-recoil .3s steps(3, end); } @keyframes cb-recoil { 30% { translate: -2px 0; } }
+.cb-dead { transform-origin: 0 0; animation: cb-fall .7s steps(7, end) .12s both; transform-box: view-box; }
+@keyframes cb-fall { to { rotate: -88deg; translate: -7px 0; } }
+.cb-dead .cb-arm { rotate: 100deg; } .cb-dead .cb-hat { animation: hat-fly .8s steps(8, end) .12s both; }
+@keyframes hat-fly { 50% { translate: -4px -10px; } 100% { translate: -12px 6px; rotate: 90deg; } }
+.bullet { animation: bul-r .22s steps(8, end) both; filter: drop-shadow(-4px 0 0 #ffb838); } .bul-2 { animation-name: bul-l; }
+@keyframes bul-r { from { translate: 0 0; } to { translate: 70px 0; opacity: 0; } } @keyframes bul-l { from { translate: 0 0; } to { translate: -70px 0; opacity: 0; } }
+.poof { animation: poof-up .8s steps(6, end) .2s both; } @keyframes poof-up { from { opacity: 0; translate: 0 4px; } 30% { opacity: 1; } to { opacity: 0; translate: 0 -8px; } }
+.bang { animation: bang-pop .5s var(--pop) both; } @keyframes bang-pop { from { scale: 0; } 50% { scale: 1.5; } to { scale: 1; } } .bang { transform-origin: 80px 18px; transform-box: view-box; }
+.sc-go { animation: sky-red .3s steps(3, end) both; } @keyframes sky-red { from { filter: saturate(2.2) hue-rotate(-14deg) brightness(1.3); } }
+.sc-waiting .sc-sun { animation-duration: 1.2s; } .sc-waiting { animation: wait-dim 1.2s steps(2, end) infinite; } @keyframes wait-dim { 50% { filter: brightness(.88); } }
+/* HUD y paneles rústicos */
+.western-hud { border: 3px solid #e7ae5a; border-radius: 0; background: #2a1a24; backdrop-filter: none; box-shadow: 4px 4px 0 rgba(0,0,0,.5); }
+.western-hud-score { font-family: var(--pixel-display); font-size: clamp(16px, 3vw, 26px); text-shadow: 3px 3px 0 #000a; }
+.western-setup-overlay, .western-result-overlay, .western-signal-overlay { backdrop-filter: none; background-image: repeating-conic-gradient(rgba(10,6,18,.55) 0 25%, transparent 0 50%); background-size: 4px 4px; }
+.western-setup-card { border: 4px solid #e7ae5a; border-radius: 0; background: #2a1a24; box-shadow: 6px 6px 0 #0009, inset 0 0 0 3px #5a3320; }
+.western-go-overlay > div { font-family: var(--pixel-display); color: #fff3b0; text-shadow: 4px 4px 0 #c43b2c, 8px 8px 0 #0008; }
+.western-result-overlay h2 { text-shadow: 3px 3px 0 #0009; }
+.duel-fire { border-width: 3px; border-radius: 0; box-shadow: 4px 4px 0 #0007; }
+@media (prefers-reduced-motion: reduce) { .western-scene * { animation: none !important; } }
+
+/* Atardecer: si nadie dispara, el sol cae y la noche se acerca */
+.sc-dusk .sc-sun { animation: sun-pulse 4s steps(4, end) infinite, sun-set 14s steps(56, end) forwards; }
+@keyframes sun-set { to { translate: 0 58px; } }
+.dusk-veil { pointer-events: none; } .sc-dusk .dusk-veil { animation: dusk-fall 14s steps(28, end) forwards; }
+@keyframes dusk-fall { to { opacity: .66; } }
+.sc-stars2 { opacity: 0; } .sc-stars2 rect { animation: star-blink 1.1s steps(2, end) infinite; } .sc-dusk .sc-stars2 { animation: stars-in 14s steps(14, end) forwards; }
+@keyframes stars-in { 40% { opacity: 0; } to { opacity: 1; } }
+.cactus-flower { animation: record-blink .9s steps(2, end) infinite; }
+/* Marcador fino arriba y cartel de espera compacto */
+.western-stage .western-hud { top: 8px; bottom: auto; right: 8px; left: 8px; min-height: 0; padding: 5px 10px; }
+.western-stage .western-hud b { font-size: 8px; } .western-stage .western-hud > span small { font-size: 6px; }
+.western-stage .western-hud-score { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 18px; position: relative; }
+.western-stage .western-hud-score i { font-style: normal; font-size: 12px; opacity: .7; }
+.western-stage .western-hud-score small { position: absolute; top: 100%; left: 50%; translate: -50% 3px; white-space: nowrap; background: #2a1a24; padding: 2px 6px; font-size: 5px; }
+.western-stage .western-signal-overlay { align-content: start; justify-items: center; padding-top: 62px; background: none; }
+.western-stage .western-signal-overlay .wait-seal { width: auto; height: auto; padding: 8px 18px; border: 3px solid #ffdfa1; border-radius: 0; background: #2a1a24; box-shadow: 4px 4px 0 #0008; }
+.western-stage .western-signal-overlay .wait-seal span { font-family: var(--pixel-display); font-size: 11px; }
+.western-stage .western-signal-overlay .wait-seal i { bottom: -13px; border-radius: 0; }
+.western-stage .western-go-overlay { padding-top: 58px; }
+.western-stage .western-go-overlay > div { font-size: clamp(26px, 6vw, 46px); }
+.western-stage .western-hud-score { flex-direction: row; }
+.western-stage .western-hud { align-items: center; }
+.western-stage .western-result-overlay { align-content: start; justify-items: center; gap: 6px; padding-top: 58px; background-image: repeating-conic-gradient(rgba(10,6,18,.3) 0 25%, transparent 0 50%); }
+.western-stage .western-result-overlay .result-star { width: 34px; height: 34px; } .western-stage .western-result-overlay .result-star svg { width: 100%; height: 100%; }
+.western-stage .western-result-overlay h2 { font-family: var(--pixel-display); font-size: clamp(13px, 2.6vw, 20px); line-height: 1.5; margin: 2px 0; text-shadow: 3px 3px 0 #000a; }
+.western-stage .western-result-overlay .reaction-time { font-family: var(--pixel-display); font-size: 22px; color: #ffe585; }
+.western-stage .western-result-overlay .button-primary { min-width: 0; min-height: 38px; padding: 0 16px; }

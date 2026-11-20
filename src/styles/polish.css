@@ -1,0 +1,27 @@
+/* ===== Acabado general 8-bit ===== */
+.play-panel, .dossier-panel, .game-pocket-guide, .memory-overlay-card, .orbital-menu-card, .orbital-result-card, .memory-difficulty-picker {
+  clip-path: polygon(0 6px, 6px 6px, 6px 0, calc(100% - 6px) 0, calc(100% - 6px) 6px, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 6px calc(100% - 6px), 0 calc(100% - 6px)); }
+.game-page-heading { grid-template-columns: 1fr; }
+.game-page-heading h1, .hero-copy h1 { text-shadow: 4px 4px 0 rgba(0,0,0,.55); }
+.title-period { animation: record-blink .8s steps(2, end) infinite; }
+.hero-actions .button-primary { animation: start-blink 1.2s steps(2, end) infinite; } @keyframes start-blink { 50% { box-shadow: 4px 4px 0 #513e2b, 0 0 0 4px rgba(70,230,210,.35); } }
+.game-card { border-width: 3px; border-radius: 0; box-shadow: 5px 5px 0 rgba(0,0,0,.45); }
+.live-chip i, .game-system-led i { animation: led-pulse 1s steps(2, end) infinite; }
+.panel-titlebar { border-bottom: 3px solid rgba(70,230,210,.35); }
+.memory-stage::before, .orbital-arena::before { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px); mix-blend-mode: multiply; }
+.memory-overlay, .orbital-screen-overlay { background-image: repeating-conic-gradient(rgba(5,8,20,.5) 0 25%, transparent 0 50%); background-size: 4px 4px; backdrop-filter: none; }
+.memory-pad-button { border-width: 3px; box-shadow: 5px 5px 0 rgba(0,0,0,.4); }
+.memory-pad-button.lit { box-shadow: 0 0 0 4px currentColor, 0 0 40px currentColor; }
+.orbital-mode-card, .mode-choice, .difficulty-chip, .target-button { border-width: 3px; border-radius: 0; }
+
+/* Mission Memory: botones arcade sólidos y mensaje legible */
+.memory-pad-button { min-height: 100px; border: 0; background: #0f5a60; color: #c9fffa; box-shadow: inset -6px -6px 0 rgba(0,0,0,.35), inset 6px 6px 0 rgba(255,255,255,.14), 0 7px 0 #062a30; }
+.memory-pad-button.pad-right { background: #6a1f50; color: #ffd3ea; box-shadow: inset -6px -6px 0 rgba(0,0,0,.35), inset 6px 6px 0 rgba(255,255,255,.14), 0 7px 0 #2e0d24; }
+.memory-pad-button .pad-glyph { font-size: 38px; } .memory-pad-button b { font-family: var(--pixel-display); font-size: 10px; margin-top: 8px; }
+.memory-pad-button:not(:disabled):hover { background: #168690; } .memory-pad-button.pad-right:not(:disabled):hover { background: #92307a; }
+.memory-pad-button.lit { background: #46e6d2; color: #06211e; box-shadow: inset -6px -6px 0 rgba(0,0,0,.2), inset 6px 6px 0 rgba(255,255,255,.5), 0 0 0 4px #e6fffb, 0 0 44px #46e6d2; }
+.memory-pad-button.pad-right.lit { background: #ee4ea0; color: #2a0618; box-shadow: inset -6px -6px 0 rgba(0,0,0,.2), inset 6px 6px 0 rgba(255,255,255,.5), 0 0 0 4px #ffe1f1, 0 0 44px #ee4ea0; }
+.memory-pad-button:not(:disabled):active { translate: 0 5px; }
+.memory-message h2 { font-family: var(--pixel-display); font-size: clamp(11px, 1.9vw, 17px); line-height: 1.6; text-shadow: 3px 3px 0 #000a; }
+.earth-illustration { scale: 1.2; } .memory-hud strong { font-family: var(--pixel-display); text-shadow: 3px 3px 0 #0009; }
+.phase-chip { border-width: 3px; font-family: var(--pixel-display); font-size: 8px; padding: 7px 10px; }

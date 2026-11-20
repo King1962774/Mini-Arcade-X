@@ -1,0 +1,43 @@
+/* ===== Catálogo del Hub: tarjetas arcade ===== */
+.game-grid { gap: 26px; align-items: stretch; }
+.game-card { --gc: #46e6d2; position: relative; display: flex; flex-direction: column; cursor: pointer; border: 4px solid #22384c; border-radius: 0; background: #0b1320; box-shadow: 6px 6px 0 rgba(0,0,0,.5); transition: translate .2s steps(3, end), box-shadow .2s steps(3, end), border-color .2s steps(2, end); }
+.game-card.west { --gc: #e7ae5a; } .game-card.space { --gc: #46e6d2; } .game-card.orbital { --gc: #ee4ea0; }
+.game-card:hover, .game-card:focus-visible, .game-card.is-active { translate: 0 -10px; border-color: var(--gc); box-shadow: 8px 8px 0 var(--gc); outline: none; }
+.game-card:active { translate: 0 -3px; box-shadow: 3px 3px 0 var(--gc); }
+.card-art { position: relative; height: auto; min-height: 0; aspect-ratio: 160 / 104; overflow: hidden; border-bottom: 4px solid var(--gc); background: #070b14; }
+.card-art > svg { position: absolute; inset: 0; width: 100%; height: 100%; transition: scale .6s steps(6, end); image-rendering: pixelated; }
+.game-card:hover .card-art > svg, .game-card:focus-visible .card-art > svg { scale: 1.1; }
+.card-art::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity .4s steps(5, end); background: repeating-linear-gradient(0deg, rgba(0,0,0,.26) 0 2px, transparent 2px 4px), linear-gradient(180deg, rgba(7,11,20,.5), transparent 45%, rgba(7,11,20,.65)); }
+.game-card:hover .card-art::after, .game-card:focus-visible .card-art::after { opacity: .2; }
+.card-index, .card-category { position: absolute; z-index: 3; top: 8px; padding: 5px 7px; border: 2px solid var(--gc); background: rgba(8,12,22,.85); color: #fff; font: 8px var(--pixel-display); letter-spacing: 0; }
+.card-index { left: 8px; } .card-category { right: 8px; background: var(--gc); color: #0b1320; }
+.card-copy { display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 16px 16px 16px; }
+.card-copy h3 { text-shadow: 3px 3px 0 #000a; }
+.players-pill { border: 2px solid var(--gc); border-radius: 0; color: var(--gc); }
+.card-detail-points span i { background: var(--gc); border-radius: 0; }
+.card-play { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding: 11px 14px; background: #16273a; color: var(--gc); font-family: var(--pixel-display); font-size: 10px; box-shadow: 4px 4px 0 #000a; transition: background .15s steps(2, end), color .15s steps(2, end); }
+.card-play i { font-style: normal; }
+.game-card:hover .card-play, .game-card:focus-visible .card-play { background: var(--gc); color: #0b1320; }
+.game-card:hover .card-play i { animation: play-nudge .5s steps(2, end) infinite; } @keyframes play-nudge { 50% { translate: 6px 0; } }
+/* Escenas: reposo vivo, hover intenso */
+.ca-stars rect { animation: star-blink 1.6s steps(2, end) infinite; } .is-active .ca-stars rect { animation-duration: .5s; }
+.ca-comet { animation: ca-comet 5s linear infinite; } @keyframes ca-comet { from { translate: -30px 8px; } to { translate: 180px 40px; } } .is-active .ca-comet { animation-duration: 1.6s; }
+.ca-earth { animation: planet-pixel-float 3s steps(3, end) infinite; } .ca-ring { animation: earth-ring-shimmer 2s steps(2, end) infinite; }
+.ca-padA .pad-body, .ca-padB .pad-body { transition: fill .1s steps(1, end); }
+.is-active .ca-padA .pad-body { animation: pad-a 2.2s steps(1, end) infinite; } .is-active .ca-padB .pad-body { animation: pad-b 2.2s steps(1, end) infinite; }
+@keyframes pad-a { 0%, 14% { fill: #46e6d2; } 15%, 54% { fill: #0f5a60; } 55%, 69% { fill: #46e6d2; } 70%, 100% { fill: #0f5a60; } }
+@keyframes pad-b { 0%, 24% { fill: #6a1f50; } 25%, 39% { fill: #ee4ea0; } 40%, 84% { fill: #6a1f50; } 85%, 99% { fill: #ee4ea0; } }
+.ca-planet { animation: planet-pixel-float 4s steps(4, end) infinite; }
+.ca-bob { animation: cb-breathe 1s steps(2, end) infinite; } .ship-1 .ca-bob { animation-delay: -.5s; }
+.ca-flame { animation: ca-flame .2s steps(2, end) infinite; } @keyframes ca-flame { 50% { width: 8px; x: -8px; } }
+.ca-rock.r1 { animation: ca-rock 6s linear infinite; } .ca-rock.r2 { animation: ca-rock 8s linear infinite reverse; } @keyframes ca-rock { from { translate: -6px -2px; } to { translate: 12px 6px; } }
+.ca-bul, .ca-boom { opacity: 0; }
+.is-active .ca-bul.b1 { animation: ca-fire-r 1.4s steps(10, end) infinite; } .is-active .ca-bul.b2 { animation: ca-fire-l 1.4s steps(10, end) .35s infinite; }
+@keyframes ca-fire-r { 0% { translate: 0 0; opacity: 1; } 70% { translate: 36px 0; opacity: 1; } 71%, 100% { opacity: 0; translate: 36px 0; } }
+@keyframes ca-fire-l { 0% { translate: 0 0; opacity: 1; } 70% { translate: -34px 0; opacity: 1; } 71%, 100% { opacity: 0; translate: -34px 0; } }
+.is-active .ca-boom { animation: ca-boom 1.4s steps(7, end) infinite; transform-origin: 80px 52px; transform-box: view-box; } @keyframes ca-boom { 0%, 68% { opacity: 0; scale: .2; } 72% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 1.8; } }
+/* Cabecera y filtros del catálogo */
+.section-heading-row h2 { text-shadow: 4px 4px 0 rgba(0,0,0,.55); }
+.filter-pill { border: 3px solid #22384c; border-radius: 0; background: #0b1320; font-family: var(--pixel-display); font-size: 8px; padding: 10px 14px; box-shadow: 3px 3px 0 #000a; transition: translate .12s steps(2, end), background .12s steps(2, end); }
+.filter-pill:hover { translate: 0 -2px; border-color: #46e6d2; } .filter-pill.selected { background: #46e6d2; color: #06211e; border-color: #e6fffb; }
+@media (prefers-reduced-motion: reduce) { .game-card, .game-card *, .card-art > svg { animation: none !important; transition: none !important; } .game-card:hover, .game-card.is-active { translate: 0 0; } }

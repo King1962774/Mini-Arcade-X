@@ -1,0 +1,164 @@
+/* ===== DATOS DEL CARTUCHO: el panel es un cartucho de verdad ===== */
+.dossier-panel.cartridge {
+  --notch: polygon(0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 100% 100%, 0 100%);
+  position: sticky; top: 15px; padding: 0; border: 0; background: none; box-shadow: none; clip-path: none;
+  animation: cart-insert .55s steps(7, end) both .25s;
+}
+@keyframes cart-insert { from { translate: 0 -30px; opacity: 0; } 60% { opacity: 1; } to { translate: 0 0; opacity: 1; } }
+
+.cartridge .cart-shell { padding: 4px 4px 0; background: linear-gradient(180deg, var(--cart) 0, var(--cart) 62px, color-mix(in srgb, var(--cart) 45%, #0a1018) 100%); clip-path: var(--notch); filter: drop-shadow(5px 6px 0 rgba(0,0,0,.45)); }
+.cartridge .cart-body { padding: 0 12px 12px; background: #0b121b; background-image: repeating-linear-gradient(0deg, transparent 0 7px, rgba(131,255,224,.025) 8px 9px); clip-path: polygon(0 5px, 3px 5px, 3px 2px, 6px 2px, 6px 0, calc(100% - 6px) 0, calc(100% - 6px) 2px, calc(100% - 3px) 2px, calc(100% - 3px) 5px, 100% 5px, 100% 100%, 0 100%); }
+
+/* Agarre del cartucho */
+.cart-grip { display: flex; justify-content: center; gap: 5px; height: 15px; margin: 0 -12px 11px; padding-top: 5px; background: linear-gradient(var(--cart), color-mix(in srgb, var(--cart) 70%, #000)); }
+.cart-grip i { width: 7px; height: 8px; background: rgba(0,0,0,.4); box-shadow: 1px 1px 0 rgba(255,255,255,.28); }
+.cart-grip i:nth-child(odd) { height: 10px; }
+
+/* Cabecera */
+.cartridge .dossier-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 0 10px; border-bottom: 2px dashed rgba(131,255,224,.26); color: #9db3bf; font: 400 7px var(--pixel-display, monospace); letter-spacing: 0; }
+.cart-led { display: inline-block; width: 7px; height: 7px; margin-right: 6px; background: #5dff8f; box-shadow: 0 0 8px #5dff8f; animation: led-pulse 1s steps(2, end) infinite; vertical-align: -1px; }
+.cart-slot { padding: 3px 5px; background: var(--cart); color: #0b121b; font: 400 6px var(--pixel-display, monospace); box-shadow: 2px 2px 0 rgba(0,0,0,.5); }
+
+/* Etiqueta del cartucho */
+.cart-label { position: relative; margin: 12px 0 14px; overflow: hidden; border: 3px solid #1b1220; background: #efe1bb; color: #2a1a2e; box-shadow: 4px 4px 0 rgba(0,0,0,.45); }
+.cart-label-band { display: flex; justify-content: space-between; padding: 4px 6px; background: var(--cart); color: #0b121b; font: 400 5px var(--pixel-display, monospace); border-bottom: 3px solid #1b1220; }
+.cart-label-main { display: flex; gap: 10px; align-items: center; padding: 10px 9px 11px; background-image: repeating-linear-gradient(135deg, rgba(42,26,46,.06) 0 3px, transparent 3px 6px); }
+.cart-emblem { position: relative; flex: 0 0 58px; display: grid; place-items: center; width: 58px; height: 58px; border: 3px solid #1b1220; background: #0b1020; background-image: radial-gradient(circle at 50% 120%, color-mix(in srgb, var(--cart) 55%, transparent), transparent 70%); box-shadow: 3px 3px 0 var(--cart-2); }
+.cart-emblem svg { width: 38px; height: 38px; image-rendering: pixelated; animation: emblem-bob 1.6s steps(2, end) infinite; filter: drop-shadow(2px 2px 0 rgba(0,0,0,.5)); }
+.cart-emblem .em-earth { animation: emblem-spin 5s steps(10, end) infinite; }
+.cart-emblem .em-ship { animation: emblem-fly 1.2s steps(2, end) infinite; }
+@keyframes emblem-bob { 50% { translate: 0 -3px; } }
+@keyframes emblem-spin { 0%, 100% { filter: drop-shadow(2px 2px 0 rgba(0,0,0,.5)) brightness(1); } 50% { filter: drop-shadow(2px 2px 0 rgba(0,0,0,.5)) brightness(1.3) hue-rotate(10deg); } }
+@keyframes emblem-fly { 50% { translate: 3px -2px; } }
+.cart-emblem .sp { position: absolute; width: 3px; height: 3px; background: #fff3cc; animation: sparkle 2s steps(1, end) infinite; }
+.cart-emblem .s1 { top: 5px; left: 6px; } .cart-emblem .s2 { top: 12px; right: 5px; animation-delay: .7s; } .cart-emblem .s3 { bottom: 6px; left: 12px; animation-delay: 1.3s; }
+@keyframes sparkle { 0%, 60%, 100% { opacity: 0; } 70%, 90% { opacity: 1; scale: 1.6; } }
+.cart-label .dossier-title { min-width: 0; padding: 0; }
+.cart-label .dossier-title .eyebrow { margin: 0; color: #7a3a46; font: 400 6px var(--pixel-display, monospace); }
+.cart-label .dossier-title h2 { margin: 5px 0 0; color: #2a1a2e; font: 400 23px/.95 var(--pixel-body, monospace); letter-spacing: 0; }
+.cart-shine { position: absolute; top: 0; bottom: 0; left: -30%; width: 16%; background: rgba(255,255,255,.5); transform: skewX(-18deg); animation: label-shine 5.5s steps(14, end) infinite 1s; pointer-events: none; }
+@keyframes label-shine { 0%, 70% { left: -30%; } 100% { left: 130%; } }
+
+/* Bloques */
+.cart-block { padding: 0 0 12px; }
+.cart-tag { display: flex; align-items: center; gap: 7px; margin: 0 0 8px; color: #dfe9ec; font: 400 6.5px var(--pixel-display, monospace); letter-spacing: 0; }
+.cart-tag i { flex: 0 0 auto; width: 8px; height: 8px; background: var(--cart); box-shadow: 2px 2px 0 var(--cart-2); }
+.cart-tag small { margin-left: auto; color: #6f8794; font: 400 5px var(--pixel-display, monospace); text-align: right; }
+
+.cart-seats { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.seat { display: inline-flex; align-items: center; gap: 5px; padding: 4px 6px 4px 5px; border: 2px solid #2a3a48; background: #0e1824; color: #566a78; }
+.seat svg { width: 12px; height: 15px; fill: currentColor; }
+.seat b { font: 400 5.5px var(--pixel-display, monospace); }
+.seat.lit { border-color: var(--cart); background: color-mix(in srgb, var(--cart) 14%, #0e1824); color: var(--cart); box-shadow: 2px 2px 0 rgba(0,0,0,.45); }
+.seat.lit svg { animation: seat-idle 1.4s steps(2, end) infinite; }
+.seat.dashed { border-style: dashed; }
+@keyframes seat-idle { 50% { translate: 0 -2px; } }
+.cart-seats-text { flex-basis: 100%; color: #8ea1ab; font: 400 17px/1 var(--pixel-body, monospace); }
+
+.cartridge .dossier-summary { margin: 0 0 13px; padding: 9px 10px; border-left: 4px solid var(--cart); background: rgba(131,255,224,.05); color: #a9bac2; font: 400 18px/1.05 var(--pixel-body, monospace); }
+
+.cart-features { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.cart-features li { display: flex; gap: 8px; align-items: flex-start; padding: 6px 7px; border: 2px solid #1b2a38; background: #0e1824; transition: translate .12s steps(2, end), border-color .12s steps(2, end), background .12s steps(2, end); animation: feat-in .4s steps(4, end) both; animation-delay: calc(.5s + var(--i) * .12s); }
+.cart-features li:hover { translate: 3px 0; border-color: var(--cart); background: color-mix(in srgb, var(--cart) 10%, #0e1824); }
+.cart-features svg { flex: 0 0 auto; width: 12px; height: 10px; margin-top: 3px; fill: var(--cart); filter: drop-shadow(1px 1px 0 rgba(0,0,0,.6)); }
+.cart-features li:hover svg { animation: check-pop .3s var(--hop, ease); }
+.cart-features p { margin: 0; color: #cdd8dc; font: 400 17px/1 var(--pixel-body, monospace); }
+@keyframes feat-in { from { opacity: 0; translate: -14px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes check-pop { 40% { scale: 1.6; } }
+
+.cart-swatches { display: flex; gap: 6px; }
+.cart-swatches button { flex: 1; display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 4px; border: 2px solid #1b2a38; background: #0e1824; cursor: pointer; transition: translate .1s steps(2, end); }
+.cart-swatches button i { display: block; height: 22px; border: 2px solid rgba(0,0,0,.55); box-shadow: inset 2px 2px 0 rgba(255,255,255,.3), inset -2px -2px 0 rgba(0,0,0,.25); }
+.cart-swatches button span { color: #8ea1ab; font: 400 14px/1 var(--pixel-body, monospace); text-align: center; }
+.cart-swatches button:hover { translate: 0 -3px; border-color: #fff3cc; }
+.cart-swatches button:active { translate: 0 1px; }
+.cart-swatches button.copied { border-color: #5dff8f; }
+.cart-swatches button.copied span { color: #5dff8f; }
+.cart-swatches button:focus-visible { outline: 2px dashed #83ffe0; outline-offset: 2px; }
+
+.cart-keys { display: grid; gap: 7px; }
+.key-row { display: flex; gap: 8px; align-items: center; padding: 7px; border: 2px solid #1b2a38; background: #0e1824; }
+.key-who { flex: 0 0 auto; padding: 4px 5px; background: #ffc75e; color: #0b121b; font: 400 6px var(--pixel-display, monospace); box-shadow: 2px 2px 0 rgba(0,0,0,.5); }
+.key-groups { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+.key-group { display: grid; gap: 3px; }
+.key-group > span { color: #6f8794; font: 400 4.5px var(--pixel-display, monospace); }
+.key-group > div { display: flex; gap: 4px; }
+.cartridge kbd { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 5px; border: 2px solid #0a0f15; background: #c9d4da; color: #1b2733; font: 400 15px var(--pixel-body, monospace); box-shadow: inset 0 -4px 0 #8393a0, inset 2px 2px 0 #eef4f7; transition: translate .05s steps(1); }
+.cartridge kbd.lit { translate: 0 3px; background: var(--cart); box-shadow: inset 0 0 0 0 transparent, 0 0 12px var(--cart); color: #0b121b; }
+.key-note { display: flex; align-items: center; gap: 7px; margin: 0; color: #83ffe0; font: 400 5.5px var(--pixel-display, monospace); }
+.key-note svg { width: 15px; height: 15px; color: var(--cart); }
+
+/* Tablas de configuración que cada juego añade */
+.cartridge .config-dossier { margin: 0 0 12px; padding: 0; border: 2px solid #1b2a38; background: #0e1824; }
+.cartridge .config-dossier > span { display: block; margin: 0; padding: 6px 8px; background: var(--cart); color: #0b121b; font: 400 6px var(--pixel-display, monospace); }
+.cartridge .config-dossier > p { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 0; padding: 6px 8px; border-top: 2px solid #15222f; color: #cdd8dc; font: 400 17px var(--pixel-body, monospace); }
+.cartridge .config-dossier > p:nth-of-type(even) { background: rgba(255,255,255,.03); }
+.cartridge .config-dossier > p b { font-weight: 400; }
+.cartridge .config-dossier code { padding: 2px 5px; background: #07101a; color: #ffc75e; font: 400 7px var(--pixel-display, monospace); }
+.cartridge .config-dossier > small { display: block; padding: 6px 8px; border-top: 2px dashed #15222f; color: #7f94a1; font: 400 5.5px/1.7 var(--pixel-display, monospace); }
+.cartridge .memory-config > div, .cartridge .orbital-config > div { padding: 7px 8px; border-top: 2px solid #15222f; }
+.cartridge .memory-config > div:first-child, .cartridge .orbital-config > div:first-child { border-top: 0; }
+.cartridge .memory-config > div span, .cartridge .orbital-config > div span { color: var(--cart); font: 400 6px var(--pixel-display, monospace); }
+.cartridge .memory-config > div code, .cartridge .orbital-config > div code { display: block; margin: 5px 0 3px; padding: 0; background: none; color: #dce5e7; font: 400 17px var(--pixel-body, monospace); }
+.cartridge .memory-config > div small, .cartridge .orbital-config > div small { display: block; margin: 0; color: #7f94a1; font: 400 5px var(--pixel-display, monospace); }
+.cartridge .memory-config > small, .cartridge .orbital-config > small { padding: 7px 8px; border-top: 2px dashed #15222f; }
+
+/* Botón de expulsar */
+.cartridge .dossier-exit { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; margin-top: 2px; padding: 11px 8px; border: 3px solid #0a0f15; background: #c64a5a; color: #fff; font: 400 7px var(--pixel-display, monospace); box-shadow: inset 0 -4px 0 rgba(0,0,0,.3), 4px 4px 0 rgba(0,0,0,.5); cursor: pointer; transition: translate .08s steps(1), box-shadow .08s steps(1), filter .08s steps(1); }
+.cartridge .dossier-exit:hover { filter: brightness(1.15); }
+.cartridge .dossier-exit:active { translate: 3px 3px; box-shadow: inset 0 -2px 0 rgba(0,0,0,.3), 1px 1px 0 rgba(0,0,0,.5); }
+.cartridge .dossier-exit:focus-visible { outline: 2px dashed #83ffe0; outline-offset: 3px; }
+.eject { position: relative; width: 10px; height: 10px; }
+.eject::before { position: absolute; top: 0; left: 0; border: 5px solid transparent; border-bottom: 5px solid currentColor; border-top: 0; content: ''; }
+.eject::after { position: absolute; bottom: 0; left: 0; width: 10px; height: 2px; background: currentColor; content: ''; }
+.dossier-exit:hover .eject { animation: eject-up .5s steps(4, end) infinite; }
+@keyframes eject-up { 50% { translate: 0 -3px; } }
+
+/* Conector dorado */
+.cart-pins { display: flex; justify-content: center; gap: 4px; padding: 5px 10px 6px; background: #05080c; border-top: 3px solid #1a2a38; filter: drop-shadow(5px 6px 0 rgba(0,0,0,.45)); }
+.cart-pins i { width: 6px; height: 13px; background: #d9a441; box-shadow: inset 2px 0 0 #fff0b0, inset -1px 0 0 #8a5a14; animation: pin-glint 2.8s steps(1, end) infinite; animation-delay: calc(var(--n) * 90ms); }
+@keyframes pin-glint { 0%, 12%, 100% { filter: none; } 6% { filter: brightness(1.7); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .dossier-panel.cartridge, .cart-led, .cart-emblem svg, .cart-emblem .sp, .cart-shine, .cart-features li, .seat.lit svg, .cart-pins i, .eject { animation: none !important; }
+  .cart-features li { opacity: 1; }
+}
+
+/* ===== Ajuste de tamaño: el cartucho mide lo mismo que el panel de juego ===== */
+.game-layout { align-items: stretch; }
+.dossier-panel.cartridge { position: relative; top: auto; display: flex; flex-direction: column; min-height: 560px; contain: size layout; }
+.cartridge .cart-shell { flex: 1 1 0; min-height: 0; display: flex; flex-direction: column; }
+.cartridge .cart-body { flex: 1 1 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: var(--cart) #0b121b; }
+.cartridge .cart-body::-webkit-scrollbar { width: 8px; }
+.cartridge .cart-body::-webkit-scrollbar-track { background: #070c13; }
+.cartridge .cart-body::-webkit-scrollbar-thumb { background: var(--cart); border: 2px solid #070c13; }
+.cartridge .cart-pins { flex: 0 0 auto; }
+/* El agarre y la cabecera se quedan fijos arriba mientras se desplaza el contenido */
+.cartridge .cart-grip { position: sticky; top: 0; z-index: 3; margin-bottom: 0; }
+.cartridge .dossier-top { position: sticky; top: 15px; z-index: 3; padding: 8px 0 8px; margin-bottom: 0; background: #0b121b; }
+
+/* Formato compacto */
+.cartridge .cart-body { padding-right: 10px; padding-left: 10px; }
+.cartridge .cart-label { margin: 10px 0 11px; }
+.cartridge .cart-label-main { gap: 9px; padding: 8px; }
+.cartridge .cart-emblem { flex-basis: 48px; width: 48px; height: 48px; }
+.cartridge .cart-emblem svg { width: 32px; height: 32px; }
+.cartridge .cart-label .dossier-title h2 { font-size: 21px; }
+.cartridge .cart-block { padding-bottom: 9px; }
+.cartridge .cart-tag { margin-bottom: 6px; }
+.cartridge .cart-seats-text { flex-basis: auto; margin-left: auto; font-size: 16px; }
+.cartridge .dossier-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; padding: 6px 9px; font-size: 16px; line-height: 1; }
+.cartridge .cart-features { gap: 4px; }
+.cartridge .cart-features li { padding: 4px 7px; }
+.cartridge .cart-features p { font-size: 16px; }
+.cartridge .cart-swatches button i { height: 16px; }
+.cartridge .cart-keys { grid-template-columns: 1fr; gap: 5px; }
+.cartridge .key-row { padding: 5px 7px; }
+.cartridge kbd { min-width: 22px; height: 22px; font-size: 14px; }
+.cartridge .config-dossier { margin-bottom: 9px; }
+.cartridge .config-dossier > p { padding: 4px 8px; font-size: 16px; }
+.cartridge .config-dossier > small { padding: 4px 8px; }
+.cartridge .memory-config > div, .cartridge .orbital-config > div { padding: 5px 8px; }
+.cartridge .dossier-exit { padding: 9px 8px; }
+
+/* Pantallas más bajas: aún más compacto */
